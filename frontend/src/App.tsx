@@ -1,8 +1,7 @@
 // frontend/src/App.tsx
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './App.css'; // Importação do App.css
-
+import './App.css'; // Importação do CSS
 
 function App() {
   const navigate = useNavigate();
