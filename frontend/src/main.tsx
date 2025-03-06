@@ -14,11 +14,20 @@ import AdminDashboard from './pages/admin/Dashboard';
 import TeacherDashboard from './pages/teacher/Dashboard';
 import StudentDashboard from './pages/student/Dashboard';
 
-// Páginas administrativas
+// Páginas administrativas - Alunos
 import UserManagement from './pages/admin/UserManagement';
 import StudentList from './pages/admin/StudentList';
 import StudentForm from './pages/admin/StudentForm';
 import StudentDetails from './pages/admin/StudentDetails';
+
+// Páginas administrativas - Professores
+import TeacherList from './pages/admin/TeacherList';
+import TeacherForm from './pages/admin/TeacherForm';
+import TeacherDetails from './pages/admin/TeacherDetails';
+
+// Páginas administrativas - Histórico Escolar
+import AcademicRecordForm from './pages/admin/AcademicRecordForm';
+//import AcademicRecordDetails from './pages/admin/AcademicRecordDetails';
 
 // Estilos
 import './index.css';
@@ -41,11 +50,25 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/usuarios" element={<UserManagement />} />
+            
+            {/* Rotas de alunos */}
             <Route path="/admin/alunos" element={<StudentList />} />
             <Route path="/admin/alunos/novo" element={<StudentForm />} />
             <Route path="/admin/alunos/editar/:id" element={<StudentForm />} />
             <Route path="/admin/alunos/:id" element={<StudentDetails />} />
-            <Route path="/admin/professores" element={<div>Professores</div>} />
+            
+            {/* Rotas de professores */}
+            <Route path="/admin/professores" element={<TeacherList />} />
+            <Route path="/admin/professores/novo" element={<TeacherForm />} />
+            <Route path="/admin/professores/editar/:id" element={<TeacherForm />} />
+            <Route path="/admin/professores/:id" element={<TeacherDetails />} />
+            
+            {/* Rotas de histórico escolar */}
+            <Route path="/admin/historico/novo" element={<AcademicRecordForm />} />
+            <Route path="/admin/historico/editar/:id" element={<AcademicRecordForm />} />
+            {/* <Route path="/admin/historico/:id" element={<AcademicRecordDetails />} /> */}
+            
+            {/* Outras rotas administrativas */}
             <Route path="/admin/turmas" element={<div>Turmas</div>} />
             <Route path="/admin/matriculas" element={<div>Matrículas</div>} />
             <Route path="/admin/relatorios" element={<div>Relatórios</div>} />
