@@ -16,6 +16,9 @@ import StudentDashboard from './pages/student/Dashboard';
 
 // Páginas administrativas
 import UserManagement from './pages/admin/UserManagement';
+import StudentList from './pages/admin/StudentList';
+import StudentForm from './pages/admin/StudentForm';
+import StudentDetails from './pages/admin/StudentDetails';
 
 // Estilos
 import './index.css';
@@ -38,7 +41,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/usuarios" element={<UserManagement />} />
-            <Route path="/admin/alunos" element={<div>Alunos</div>} />
+            <Route path="/admin/alunos" element={<StudentList />} />
+            <Route path="/admin/alunos/novo" element={<StudentForm />} />
+            <Route path="/admin/alunos/editar/:id" element={<StudentForm />} />
+            <Route path="/admin/alunos/:id" element={<StudentDetails />} />
             <Route path="/admin/professores" element={<div>Professores</div>} />
             <Route path="/admin/turmas" element={<div>Turmas</div>} />
             <Route path="/admin/matriculas" element={<div>Matrículas</div>} />

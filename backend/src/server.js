@@ -3,10 +3,14 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const path = require('path');
 
 // Importar rotas
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
+const studentRoutes = require('./routes/students');
+const teacherRoutes = require('./routes/teachers');
+const academicRecordRoutes = require('./routes/academicRecords');
 
 dotenv.config();
 const app = express();
@@ -21,9 +25,15 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use(cors());
 app.use(express.json());
 
+// Servir arquivos estáticos da pasta uploads
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
 // Definir rotas
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/students', studentRoutes);
+app.use('/api/teachers', teacherRoutes);
+app.use('/api/academic-records', academicRecordRoutes);
 
 // Rota raiz
 app.get('/', (req, res) => {
@@ -33,7 +43,7 @@ app.get('/', (req, res) => {
 // Middleware de tratamento de erros global
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ message: 'Erro interno no servidor.' });
+  res.status(500).json({ message: 'Erro interno no servidor.', error: err.message });
 });
 
 app.listen(PORT, () => {
